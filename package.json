@@ -1,8 +1,14 @@
-﻿{
-  "name": "pruebas-ia",
+{
+  "name": "tip-calculator",
   "version": "1.0.0",
+  "description": "Cálculo simple de propina (calculateTip)",
   "private": true,
+  "main": "dist/tip/index.js",
   "scripts": {
-    "build": "mkdir -p dist"
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "typescript": "^5.4.0"
   }
 }
