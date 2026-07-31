@@ -2,6 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { calculateSplitTip } from './split-tip.mjs';
+import { calculateTip } from './tip.mjs';
 
 test('Reparto exacto sin resto: calculateSplitTip(30, 10, 3)', () => {
   const resultado = calculateSplitTip(30, 10, 3);
@@ -34,16 +35,25 @@ test('Comensales inválido (cero): calculateSplitTip(10, 10, 0) lanza RangeError
   assert.throws(() => calculateSplitTip(10, 10, 0), RangeError);
 });
 
-test('Comensales no entero: calculateSplitTip(10, 10, 2.5) lanza RangeError o TypeError', () => {
-  assert.throws(
-    () => calculateSplitTip(10, 10, 2.5),
-    (err) => err instanceof RangeError || err instanceof TypeError,
-  );
-});
-
 test('Comensales=1 (caso trivial): calculateSplitTip(20, 10, 1)', () => {
   const resultado = calculateSplitTip(20, 10, 1);
   assert.deepEqual(resultado.partes, [22.0]);
   assert.equal(resultado.propina, 2.0);
   assert.equal(resultado.total, 22.0);
+});
+
+test('Delegación de validación de monto a calculateTip: calculateSplitTip(-5, 10, 3) lanza el mismo tipo de error que calculateTip(-5, 10)', () => {
+  let expectedErrorType;
+  try {
+    calculateTip(-5, 10);
+    assert.fail('calculateTip(-5, 10) debería lanzar un error');
+  } catch (err) {
+    expectedErrorType = err.constructor;
+  }
+
+  assert.throws(
+    () => calculateSplitTip(-5, 10, 3),
+    (err) => err instanceof expectedErrorType,
+  );
+  assert.throws(() => calculateSplitTip(-5, 10, 3), RangeError);
 });
