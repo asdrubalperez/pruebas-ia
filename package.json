@@ -1,8 +1,12 @@
-﻿{
+{
   "name": "pruebas-ia",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "mkdir -p dist"
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/node": "^20.11.0"
   }
 }
