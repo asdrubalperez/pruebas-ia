@@ -1,7 +1,7 @@
 // Resultado del cálculo de propina: ambos valores en 2 decimales y
 // coherentes entre sí (total usa la propina ya redondeada).
 export interface ResultadoPropina {
-  propina: number;
+  tipAmount: number;
   total: number;
 }
 
@@ -15,10 +15,20 @@ function redondearDosDecimales(valor: number): number {
 
 // Función pura: mismas entradas producen siempre las mismas salidas, sin
 // efectos secundarios, persistencia ni UI.
-// propina = monto * (porcentaje / 100), redondeada a 2 decimales.
-// total = monto + propina (ya redondeada), redondeado a 2 decimales.
+// tipAmount = monto * (porcentaje / 100), redondeada a 2 decimales.
+// total = monto + tipAmount (ya redondeada), redondeado a 2 decimales.
 export function calculateTip(monto: number, porcentaje: number): ResultadoPropina {
-  const propina = redondearDosDecimales(monto * (porcentaje / 100));
-  const total = redondearDosDecimales(monto + propina);
-  return { propina, total };
+  // Validación de monto: debe ser un número finito mayor que 0.
+  if (!Number.isFinite(monto) || monto <= 0) {
+    throw new Error('El monto debe ser un número finito mayor que 0');
+  }
+
+  // Validación de porcentaje: debe ser un número finito no negativo.
+  if (!Number.isFinite(porcentaje) || porcentaje < 0) {
+    throw new Error('El porcentaje debe ser un número finito no negativo');
+  }
+
+  const tipAmount = redondearDosDecimales(monto * (porcentaje / 100));
+  const total = redondearDosDecimales(monto + tipAmount);
+  return { tipAmount, total };
 }
