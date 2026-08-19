@@ -3,14 +3,14 @@
 ## 0. Evaluación de Tamaño del Release
 
 - **Cantidad de Features en este release:** 1
-- **Factores de riesgo considerados:** Cálculo monetario sensible al redondeo binario; Límites inclusivos en 10 y 50; Contrato nuevo pero aislado, sin integraciones externas ni persistencia
+- **Factores de riesgo considerados:** Una única Feature de lógica localizada; Áreas sensibles acotadas a cálculo monetario, umbrales, redondeo y validación de entradas
 - **Conclusión:** Riesgo razonable
 
 ## 1. Secuencia del Release
 
 | Orden | Feature | Motivo del orden |
 |---|---|---|
-| 1 | Descuento simple por volumen | Es la única Feature del release r1 y entrega íntegramente el cálculo base aprobado. |
+| 1 | Descuento simple por volumen | Única Feature del release; implementa y valida de extremo a extremo el descuento simple por umbral. |
 
 ## 2. Por Feature — Enfoque Técnico y Test Plan
 
@@ -35,4 +35,4 @@
 
 ## 3. Hallazgos y Anomalías
 
-El nivel L2 se mantiene por ser lógica localizada, pero los cuatro escenarios refuerzan las áreas sensibles configuradas: montos, umbrales, redondeo y validación. No se requieren ambiente real, documentación externa ni evidencia de escrituras.
+QA aprobó f1 y no quedan Features pendientes. El release puede cerrarse una vez obtenida la aprobación del usuario.
