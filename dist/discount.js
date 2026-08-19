@@ -16,3 +16,10 @@ export function applyVolumeDiscount(amount, unitQuantity) {
     const total = roundHalfUpToTwoDecimals(amount - discountAmount);
     return { discountAmount, total };
 }
+export function applyDiscountWithCap(amount, unitQuantity, cap) {
+    const { discountAmount: nominalDiscountAmount } = applyVolumeDiscount(amount, unitQuantity);
+    const effectiveDiscountAmount = Math.min(nominalDiscountAmount, cap);
+    const discountAmount = Number.parseFloat(effectiveDiscountAmount.toPrecision(15));
+    const total = roundHalfUpToTwoDecimals(amount - discountAmount);
+    return { discountAmount, total };
+}
