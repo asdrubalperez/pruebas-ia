@@ -2,7 +2,8 @@
   "name": "pruebas-ia",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "mkdir -p dist"
+    "build": "mkdir -p dist && cp src/email.ts dist/email.js && cp src/email.test.ts dist/email.test.js && cp src/email-validator.mjs dist/email-validator.mjs"
   }
 }
