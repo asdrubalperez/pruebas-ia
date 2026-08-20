@@ -3,14 +3,14 @@
 ## 0. Evaluación de Tamaño del Release
 
 - **Cantidad de Features en este release:** 1
-- **Factores de riesgo considerados:** Una sola Feature de lógica localizada; Sin integraciones, persistencia ni efectos externos; Contrato público reutilizable que requiere regresión acotada
+- **Factores de riesgo considerados:** Una única Feature de lógica localizada, sin persistencia ni integraciones externas
 - **Conclusión:** Riesgo razonable
 
 ## 1. Secuencia del Release
 
 | Orden | Feature | Motivo del orden |
 |---|---|---|
-| 1 | Validación de formato de email | Es la única Feature del release r1 y entrega íntegramente el contrato mínimo aprobado de validación de formato. |
+| 1 | Validación de formato de email | Única Feature del release; implementa y valida íntegramente el contrato público de formato de email |
 
 ## 2. Por Feature — Enfoque Técnico y Test Plan
 
@@ -35,4 +35,4 @@
 
 ## 3. Hallazgos y Anomalías
 
-El nivel L2 aplica por tratarse de lógica funcional localizada. Los cuatro escenarios constituyen la prueba mínima válida del contrato público y deben conservarse como regresión del módulo; no se requiere ambiente real, red ni verificación de escrituras externas.
+QA aprobó f1. La secuencia completa no contiene Features pendientes; corresponde solicitar aprobación humana para cerrar el release activo r1.
